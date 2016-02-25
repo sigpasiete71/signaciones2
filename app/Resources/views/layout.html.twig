@@ -13,12 +13,12 @@
     <body>
         ddd
         {% block body %}
-         
+         {{ include('menu.html.twig')  }}
         {% endblock %}
         
         {% block javascripts %}
         {% endblock %}
-            <script src="{{ asset('bundles/framework/js/jquery-1.12.1.min.js')}}"></script>
+            <script src="{{ asset('bundles/framework/js/jquery-1.11.3.min.js')}}"></script>
             <script src="{{ asset('bundles/framework/js/bootstrap.min.js')}}"></script>
     </body>
 </html>
