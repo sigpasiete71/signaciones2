@@ -11,11 +11,20 @@ use EMM\UserBundle\Form\UserType;
 
 class UserController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em=$this->getDoctrine()->getManager();
-        $users=$em->getRepository('EMMUserBundle:User')->findAll();
-        return $this->render('EMMUserBundle:User:index.html.twig',array('users'=>$users));
+        
+        $dql="SELECT u FROM EMMUserBundle:User u";
+        $users=$em->createQuery($dql);    
+        $paginator=$this->get('knp_paginator');
+        $pagination=$paginator->paginate(
+            $users, $request->query->getInt('page',1),
+            3    
+        );
+        
+        //return $this->render('EMMUserBundle:User:index.html.twig',array('users'=>$users));
+        return $this->render('EMMUserBundle:User:index.html.twig',array('pagination' => $pagination));
         
     }
    public function addAction()
