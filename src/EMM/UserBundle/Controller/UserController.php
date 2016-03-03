@@ -20,7 +20,7 @@ class UserController extends Controller
         $paginator=$this->get('knp_paginator');
         $pagination=$paginator->paginate(
             $users, $request->query->getInt('page',1),
-            3    
+            5   
         );
         
         //return $this->render('EMMUserBundle:User:index.html.twig',array('users'=>$users));
